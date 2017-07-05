@@ -132,6 +132,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     override.ssh.username = "ubuntu"
     override.ssh.private_key_path = ENV['AWS_KEYPATH']
   end
-  #config.vm.provision "shell", path: "scripts/prov.web.sh"
+  
+config.vm.provision "shell", path: "scripts/provision.sh"
 
 end
