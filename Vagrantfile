@@ -119,4 +119,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # chef-validator, unless you changed the configuration.
   #
   #   chef.validation_client_name = "ORGNAME-validator"
+
+  config.vm.provider :aws do |aws, override|
+    aws.access_key_id = ENV['AWS_KEY']
+    aws.secret_access_key = ENV['AWS_SECRET']
+    aws.keypair_name = ENV['AWS_KEYNAME']
+    aws.ami = "ami-8b92b4ee"
+    aws.region = "us-east-2"
+    aws.instance_type = "t2.micro"
+
+    override.vm.box = "dummy"
+    override.ssh.username = "ubuntu"
+    override.ssh.private_key_path = ENV['AWS_KEYPATH']
+  end
+  #config.vm.provision "shell", path: "scripts/prov.web.sh"
+
 end
